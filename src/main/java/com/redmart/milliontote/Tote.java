@@ -19,6 +19,9 @@ public class Tote {
         this.capacity = capacity;
     }
 
+    /**
+     * Default Tote capacity
+     */
     public Tote() {
         this(45 * 30 * 35);
     }
@@ -39,7 +42,10 @@ public class Tote {
 
     public void addProduct(Product product) {
         if(content.contains(product)) {
-            throw new IllegalArgumentException("Cannot add twice the same product in a tote");
+            throw new DuplicateProductException();
+        }
+        if(!canProductFit(product)) {
+            throw new ToteOverCapacityException();
         }
         content.add(product);
     }

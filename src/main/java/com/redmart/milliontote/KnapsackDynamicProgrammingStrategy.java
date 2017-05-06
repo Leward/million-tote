@@ -48,7 +48,7 @@ public class KnapsackDynamicProgrammingStrategy implements MillionToteStrategy {
         int i = matrix.length - 1;
         int j = toteVolume;
         while (i >= 0 && j > 0) {
-            if (doesValueOriginatesFromLine(i, j, matrix)) {
+            if (doesValueOriginatesFromLine(i, j, matrix) && matrix[i][j] > 0) {
                 Product product = products.get(i);
                 tote.addProduct(product);
                 i--;

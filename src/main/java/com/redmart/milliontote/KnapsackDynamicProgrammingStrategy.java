@@ -26,7 +26,7 @@ public class KnapsackDynamicProgrammingStrategy implements MillionToteStrategy {
         LOGGER.info("Matrix size is {} integers", products.size() * (toteVolume + 1));
         int[][] matrix = new int[products.size()][toteVolume + 1];
 
-        products.sort(Comparator.comparing(Product::getVolume));
+        products.sort(Comparator.comparing(Product::getWeight));
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             for (int j = 0; j < toteVolume + 1; j++) {

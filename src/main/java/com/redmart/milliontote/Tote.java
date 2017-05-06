@@ -65,4 +65,10 @@ public class Tote {
                 .mapToInt(Product::getWeight)
                 .sum();
     }
+
+    public Integer sumOfProductIds() {
+        return content.stream()
+                .mapToInt(Product::getId)
+                .sum();
+    }
 }

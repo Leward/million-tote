@@ -87,4 +87,12 @@ public class ToteTest {
         assertThat(tote.getWeight()).isEqualTo(9);
     }
 
+    @Test
+    public void should_calculate_sum_of_product_ids() {
+        Tote tote = new Tote(100);
+        tote.addProduct(PRODUCT_1);
+        tote.addProduct(PRODUCT_2);
+        assertThat(tote.sumOfProductIds()).isEqualTo(3);
+    }
+
 }

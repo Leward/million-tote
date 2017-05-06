@@ -40,7 +40,6 @@ public class MillionToteApplication implements CommandLineRunner {
         LOGGER.info("Using Tote having a volume of {} cubic centimeters", toteVolume);
 
         List<Product> products = csvProductListParser.getProductStream().collect(Collectors.toList());
-        products.sort(Comparator.comparing(Product::getVolume).reversed());
         LOGGER.info("{} products loaded", products.size());
 
         MillionToteStrategy highPriceDensityStrategy = new HighPriceDensityStrategy();
@@ -54,11 +53,12 @@ public class MillionToteApplication implements CommandLineRunner {
 
         MillionToteStrategy dynamicProgrammingStrategy = new KnapsackDynamicProgrammingStrategy();
         Tote secondTote = dynamicProgrammingStrategy.getBestTote(products, toteVolume);
-        System.out.println("Using the HighPriceDensityStrategy: ");
+        System.out.println("Using the Dynamic Programming Strategy: ");
         System.out.printf("Tote filled with %d items, for a value of %d cents and weighting %d grams. \n",
                 secondTote.countItems(),
                 secondTote.getValue(),
                 secondTote.getWeight());
         System.out.printf("%d cubic centimeters are still available in the tote\n\n", secondTote.getRemainingCapacity());
+        System.out.printf("Sum of product IDs is %d \n", secondTote.sumOfProductIds());
     }
 }
